@@ -1,0 +1,78 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.84.0">
+  <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}">
+  <title>Palindrome Game v1.0</title>
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
+  <!-- Bootstrap icons-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  
+  <link href="{% static 'css/luman.css' %}" rel="stylesheet">
+  
+  <!-- custom CSS -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script type="text/javascript">
+    // User Is Authenticated or not
+    window.addEventListener('load', function () {
+      if (!window.sessionStorage.getItem('isLoggedIn')) {
+        window.location.href = '/app/sign_in';
+      } else {
+        userPrefrance();
+      }
+    });
+  </script>
+
+  <style type="text/css">
+    body {
+      background-image: url('{% static "images/bg-left.png" %}');
+      background-repeat: no-repeat;
+    }
+  </style>
+</head>
+<body class="text-center">
+  <div class="container">
+    <canvas id="confetti"></canvas>
+    <div class="row align-items-center">
+      <div class="col-md-6 d-flex justify-content-center" id="player-show">
+        <div class="card w-50 shadow-lg animate__animated animate__bounce" id="playerCard" >
+          <div id="userHeader" class="card-header">
+            Player 
+            <!-- It's Your Turn  -->
+          </div>
+          <div class="card-body w-100">
+            <div class="form-floating m-2">
+              <input type="text" name="player" class="form-control" id="floatingInput" placeholder="type word here">
+              <label for="floatingInput">Enter Here</label>
+            </div>
+            <button id="playerSubmit" class="form-control m-2 btn btn-lg btn-success" type="submit">Submit</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 d-flex justify-content-center" id="computer-show">
+        <div class="card w-50" id="computerCard">
+          <div class="card-header">Computer</div>
+          <div class="card-body">
+            <div class="form-floating m-2">
+              <input type="text" name="computer" class="form-control" id="floatingInput" placeholder="name@example.com">
+              <label for="floatingInput">Enter Here</label>
+            </div>
+            <button id="computerSubmit" class="form-control m-2 btn btn-lg btn-primary" type="submit" disabled >Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="{% static 'js/celebration.js' %}"></script>
+<script src="{% static 'js/services.js' %}"></script>
+<script src="{% static 'js/game_board.js' %}"></script>
+</html>

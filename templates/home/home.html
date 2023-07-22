@@ -1,0 +1,67 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>Palindrome | Home</title>
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/luman.css' %}" rel="stylesheet">
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <main>
+        <div class="container py-4">
+            <header class="pb-3 mb-4 border-bottom">
+                <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+                    <img src="{% static 'images/palindrome.png' %}" class="rounded-3" width="40px" height="40px" alt="logo_png">
+                    <span class="fs-4 ms-2">Palindrome Games</span>
+                </a>
+            </header>
+
+            <div class="p-5 mb-4 bg-light rounded-3">
+                <div class="container-fluid py-5 text-center">
+                    <h1 class="display-5 fw-bold">Welcome to Palindrome Games!</h1>
+                    <p class="col-md-8 fs-4 m-auto">Have fun with our collection of exciting palindrome games. Test your
+                        wordplay skills and challenge yourself with mind-bending puzzles. Unleash the power of
+                        palindromes and discover the hidden magic of words.</p>
+                    <a href="/app/sign_in" class="btn btn-outline-warning btn-lg mt-3" type="button">Play Game</a>
+                </div>
+            </div>
+
+            <div class="row align-items-md-stretch">
+            </div>
+
+            <footer class="pt-3 mt-4 text-muted border-top">
+                <p class="mt-3 text-muted">&copy; Palindrome Games</p>
+            </footer>
+        </div>
+    </main>
+
+</body>
+
+</html>

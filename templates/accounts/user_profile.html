@@ -1,0 +1,175 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.84.0">
+  <link rel="icon" type="image/x-icon" href="/static/assets/favicon.ico">
+  <title>Palindrome | Profile</title>
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
+  <!-- Bootstrap icons-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link href="/static/css/luman.css" rel="stylesheet">
+  <!-- custom CSS -->
+  <link href="/static/css/style.css" rel="stylesheet">
+  <!-- Script Which check user logged in or not -->
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  
+
+  <style type="text/css">
+    body {
+      background-image: url('/static/images/bg-left.png');
+      background-repeat: no-repeat;
+    }
+  </style>
+</head>
+
+<body class="text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 m-auto">
+        <div class="pt-3" id="feedback">
+          <!-- An alert pop  up here which is auto dismissable in 10 seconds -->
+        </div>
+        <div class="d-flex align-items-start shadow p-2 w-100">
+          <div class="nav flex-column nav-pills me-3 w-25" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <button class="nav-link active" id="v-pills-profile-tab" data-bs-toggle="pill"
+              data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile"
+              aria-selected="false">Profile</button>
+            <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages"
+              type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Update Profile</button>
+            <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings"
+              type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Update Password</button>
+          </div>
+          <div class="tab-content ms-5 w-75" id="v-pills-tabContent">
+            <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel"
+              aria-labelledby="v-pills-profile-tab">
+              <div class="card mb-3">
+                <div class="card-body m-5 p-5">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Full Name</h6>
+                    </div>
+                    <!-- Name of player -->
+                    <div class="col-sm-9 text-secondary" id="playerName"></div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary" id="playerEmail"></div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Phone</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary" id="playerPrimaryPhone"> (239) 816-9029</div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Mobile</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary" id="playerSecondryPhone"> (320) 380-4539</div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Address</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary" id="playerAddress"> Bay Area, San Francisco, CA</div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <a href="/app/game/board" class="btn btn-lg btn-outline-success">Play Game</a>
+                    </div>
+                  </div>
+                  <hr>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+              <div class="card mb-3">
+                <div class="card-body m-5 p-5">
+                <form id="formProfile" class="needs-validation" novalidate>
+                  <div class="form-floating m-2">
+                    <input type="text" name="fname" class="form-control" id="firstName" placeholder="name@example.com" required>
+                    <label for="firstName">First Name</label>
+                    <div class="invalid-feedback">
+                      First name required.
+                    </div>
+                  </div>
+                  <div class="form-floating m-2">
+                    <input type="text" name="lname" class="form-control" id="lastName" placeholder="Password" required>
+                    <label for="lastName">Last Name</label>
+                    <div class="invalid-feedback">
+                      Last name required.
+                    </div>
+                  </div>
+                  <button id="userSubmit" class="w-100 mb-2 btn btn-outline-success btn-lg" type="submit">Update</button>
+                </form>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+              <div class="card mb-3">
+                <div class="card-body m-5 p-5">
+                <form id="formUpdateCre" class="needs-validation" novalidate>
+                  <div class="form-floating m-2">
+                    <input type="password" name="current_password" class="form-control" id="currentPassword"
+                      placeholder="name@example.com" required>
+                    <label for="currentPassword">Current Password</label>
+                    <div class="invalid-feedback">
+                      This field is required.
+                    </div>
+                  </div>
+                  <div class="form-floating m-2">
+                    <input type="password" name="new_password" class="form-control" id="newPassword"
+                      placeholder="Password" required>
+                    <label for="newPassword">New Password</label>
+                    <div class="invalid-feedback">
+                      This field is required.
+                    </div>
+                  </div>
+                  <div class="form-floating m-2">
+                    <input type="text" name="confirm_password" class="form-control" id="confirmPassword"
+                      placeholder="Password" required>
+                    <label for="confirmPassword">Confirm Password</label>
+                    <div class="invalid-feedback">
+                      Passwords do not match.
+                    </div>
+                  </div>
+                  <button id="userPasswordSubmit" class="w-100 mb-2 btn btn-outline-primary btn-lg" type="submit">Update
+                    Password</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    // User Is Authenticated or not
+    window.addEventListener('load', function () {
+      if (!window.sessionStorage.getItem('isLoggedIn')) {
+        window.location.href = '/app/sign_in';
+      } else {
+        userPrefrance();
+      }
+    });
+  </script>
+  <script src="/static/js/user_profile.js"></script>
+  <script src="/static/js/alert_service.js"></script>
+  <script src="/static/js/services.js"></script>
+</body>
+</html>
