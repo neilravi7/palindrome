@@ -97,7 +97,7 @@
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${getUserToken()}`
+                    'Authorization': `Bearer ${getAccessToken()}`
                 },
                 body: JSON.stringify({
                     first_name: event.target.fname.value,
@@ -130,7 +130,7 @@
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${getUserToken()}`
+                    'Authorization': `Bearer ${getAccessToken()}`
                 },
                 body: JSON.stringify({
                     old_password: event.target.current_password.value,

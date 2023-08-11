@@ -19,8 +19,18 @@
   <link href="/static/css/style.css" rel="stylesheet">
   <!-- Script Which check user logged in or not -->
   <script src="{% static 'js/bootstrap.min.js' %}"></script>
-  
-
+  <script type="text/javascript">
+    // User Is Authenticated or not
+    window.addEventListener('load', function () {
+      if (!window.sessionStorage.getItem('isLoggedIn')) {
+        window.location.href = '/app/sign_in';
+      } else {
+        userPrefrance();
+      }
+    });
+    // Handle player logout
+    document.querySelector("#logout-button").addEventListener('click', playerLogout);
+  </script>
   <style type="text/css">
     body {
       background-image: url('/static/images/bg-left.png');
@@ -66,7 +76,8 @@
                     <div class="col-sm-9 text-secondary" id="playerEmail"></div>
                   </div>
                   <hr>
-                  <div class="row">
+                  
+                  <!-- <div class="row">
                     <div class="col-sm-3">
                       <h6 class="mb-0">Phone</h6>
                     </div>
@@ -85,11 +96,13 @@
                       <h6 class="mb-0">Address</h6>
                     </div>
                     <div class="col-sm-9 text-secondary" id="playerAddress"> Bay Area, San Francisco, CA</div>
-                  </div>
-                  <hr>
+                  </div> 
+                  <hr>-->
+
                   <div class="row">
                     <div class="col-sm-12">
                       <a href="/app/game/board" class="btn btn-lg btn-outline-success">Play Game</a>
+                      <button id="logout-button" class="btn btn-lg btn-outline-danger ms-5">Logout</button>
                     </div>
                   </div>
                   <hr>
@@ -158,16 +171,6 @@
       </div>
     </div>
   </div>
-  <script type="text/javascript">
-    // User Is Authenticated or not
-    window.addEventListener('load', function () {
-      if (!window.sessionStorage.getItem('isLoggedIn')) {
-        window.location.href = '/app/sign_in';
-      } else {
-        userPrefrance();
-      }
-    });
-  </script>
   <script src="/static/js/user_profile.js"></script>
   <script src="/static/js/alert_service.js"></script>
   <script src="/static/js/services.js"></script>

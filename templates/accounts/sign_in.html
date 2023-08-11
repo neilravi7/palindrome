@@ -64,7 +64,11 @@
 
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
-    <form class="g-3 needs-validation" novalidate>
+    <div class="pt-3 pb-3" id="feedback">
+      <!-- An alert pop  up here which is auto dismissable in 10 seconds -->
+    </div>
+
+    <form method="POST" action="/accounts/api/log_in" class="g-3 needs-validation" novalidate>
       <div class="form-floating m-2">
         <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
         <label for="floatingInput">Email address</label>
@@ -97,6 +101,7 @@
   </main>
 
 </body>
+<script src="/static/js/alert_service.js"></script>
 <script src="{% static 'js/sign_in.js' %}"></script>
 <script src="{% static 'js/services.js' %}"></script>
 

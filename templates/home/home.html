@@ -13,7 +13,12 @@
     <link href="{% static 'css/luman.css' %}" rel="stylesheet">
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
 
-    <style>
+    <style type="text/css">
+        body {
+            background-image: url('{% static "images/bg-left.png" %}');
+            background-repeat: no-repeat;
+        }
+
         .bd-placeholder-img {
             font-size: 1.125rem;
             text-anchor: middle;
@@ -38,12 +43,13 @@
         <div class="container py-4">
             <header class="pb-3 mb-4 border-bottom">
                 <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
-                    <img src="{% static 'images/palindrome.png' %}" class="rounded-3" width="40px" height="40px" alt="logo_png">
+                    <img src="{% static 'images/palindrome.png' %}" class="rounded-3" width="40px" height="40px"
+                        alt="logo_png">
                     <span class="fs-4 ms-2">Palindrome Games</span>
                 </a>
             </header>
 
-            <div class="p-5 mb-4 bg-light rounded-3">
+            <div class="p-5 mb-4">
                 <div class="container-fluid py-5 text-center">
                     <h1 class="display-5 fw-bold">Welcome to Palindrome Games!</h1>
                     <p class="col-md-8 fs-4 m-auto">Have fun with our collection of exciting palindrome games. Test your

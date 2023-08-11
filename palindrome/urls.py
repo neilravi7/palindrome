@@ -19,7 +19,7 @@ from django.urls import path, include
 from client.views import home_page_view
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
     # Client SIGN-UP and SIGN-IN View.
     path('', home_page_view, name='home_page'),
     path('accounts/', include('accounts.urls')),

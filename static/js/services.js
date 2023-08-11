@@ -7,6 +7,7 @@ async function checkPalindrome(palindromeString) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getAccessToken()}`
             },
             body: JSON.stringify({
                 palindromeString: palindromeString,
@@ -33,6 +34,7 @@ async function getPalindromeString() {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getAccessToken()}`
             },
         });
 
@@ -56,7 +58,7 @@ async function fetchUserDetail(player) {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${getUserToken()}`
+                'Authorization': `Bearer ${getAccessToken()}`
             }
         });
         if (response.ok) {
@@ -92,17 +94,71 @@ const getUser = () => {
 };
 
 
-// Retrieve Player token
-const getUserToken = () => {
+// Retrieve Player access token
+const getAccessToken = () => {
     return window.sessionStorage.getItem('access_token');
 };
 
 
-// Logut Player
-const playerLogout = () =>{
-    // Save tokens in session storage
+// Retrieve Player refresh token
+const getRefreshToken = () => {
+    return window.sessionStorage.getItem('refresh_token');
+};
+
+const playerLogout = () => {
+    // remove tokens in session storage
     sessionStorage.removeItem('access_token');
     sessionStorage.removeItem('refresh_token');
     sessionStorage.removeItem('isLoggedIn');
     window.location.href = '/app/sign_in';
 };
+
+
+const setAccessToken = async (data) => {
+    sessionStorage.setItem('access_token' , data.access);
+    sessionStorage.setItem('refresh_token' , data.refresh);
+    console.log("data replaced for user prefrence");
+}
+
+
+const redirectToLoginPage = () => {
+    window.location.href = '/app/sign_in';
+};
+
+
+const handleTokenRefresh = async () => {
+    try {
+        // Get the refresh token from the storage (e.g., localStorage or cookies)
+        const refreshToken = getRefreshToken();
+
+        // Make a request to your server to refresh the access token using the refresh token
+        const response = await fetch('/accounts/api/token/refresh', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ refresh: refreshToken }),
+        });
+
+        if (response.ok) {
+            // If the response is successful, parse the new access token from the response
+            const data = await response.json();
+        
+            // Update the access token in the storage (e.g., localStorage or cookies)
+            setAccessToken(data);
+
+            // Continue with the original request using the new access token
+            return data.access;
+        } else if (response.status === 401) {
+            // If the refresh token is invalid (401 Unauthorized), force the user to re-login
+            redirectToLoginPage();
+        } else {
+            // Handle other error cases
+            console.error('Token refresh failed:', response.statusText);
+            throw new Error('Token refresh failed');
+        }
+    } catch (error) {
+        console.error('An error occurred during token refresh:', error);
+        throw error;
+    }
+};  

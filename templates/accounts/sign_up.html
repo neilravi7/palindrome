@@ -18,6 +18,13 @@
   <!-- Bootstrap core CSS -->
   <link href="{% static 'css/luman.css' %}" rel="stylesheet">
   <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script type="text/javascript">
+    window.addEventListener('load', function () {
+      if (window.sessionStorage.getItem('isLoggedIn')) {
+        window.location.href = '/app/user/profile';
+      }
+    });
+  </script>
   <!-- custom CSS -->
   <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
@@ -57,6 +64,11 @@
   <main class="form-signin">
 
     <img src="{% static 'images/palindrome.png' %}" class="rounded-3" width="100px" height="100px" alt="logo_png">
+    
+    <div class="pt-3 pb-3" id="feedback">
+      <!-- An alert pop  up here which is auto dismissable in 10 seconds -->
+    </div>
+
     <h1 class="h3 mb-3 fw-normal">Please sign up </h1>
     
 
@@ -99,6 +111,7 @@
       </div>
     </div>
   </main>
+  <script src="/static/js/alert_service.js"></script>
   <script src="{% static 'js/sign_up.js' %}"></script>
 </body>
 

@@ -10,9 +10,10 @@ urlpatterns = [
     path('api/sign_up', views.SignUpView.as_view(), name='sign_up'),
     path('api/log_in', views.LoginView.as_view(), name='log_in'),
     path('api/token/refresh', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/logout', views.LogoutView.as_view(), name='auth_logout'),
+
 
     # USER URLS:
-
     # User List
     path('api/users/list', views.UserList.as_view(), name='user_list'),
      # User Details

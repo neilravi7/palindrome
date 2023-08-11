@@ -9,6 +9,8 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from rest_framework.response import Response
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.tokens import BlacklistedToken, OutstandingToken
 
 # serializers imports
 from . import serializers
@@ -58,4 +60,28 @@ class ChangePasswordView(generics.UpdateAPIView):
     queryset = get_user_model().objects.all()
     lookup_field = 'pk'
 
+ 
+class LogoutView(APIView):
+    permission_classes = (IsAuthenticated,)
+    def post(self, request):
+        print("Logout View Called")
+        try:
+            refresh_token = request.data["refresh"]
+            token = RefreshToken(refresh_token)
+            print(token)
+            token.blacklist()
+            return Response({"message":"content reset"}, status=status.HTTP_205_RESET_CONTENT)
+        except Exception as e:
+            return Response({"message":str(e)} , status=status.HTTP_400_BAD_REQUEST)
+        
 
+class LogoutAllView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request):
+        tokens = OutstandingToken.objects.filter(user_id=request.user.id)
+        
+        for token in tokens:
+            t, _ = BlacklistedToken.objects.get_or_create(token=token)
+
+        return Response(status=status.HTTP_205_RESET_CONTENT)

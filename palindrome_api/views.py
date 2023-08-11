@@ -1,9 +1,10 @@
 from rest_framework.views import APIView
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework import status
 from faker import Faker
 
-class PalindromeChecker(APIView):
+class PalindromeChecker(APIView, AllowAny):
     """Check given string is palindrome or not
     """    
     
@@ -23,7 +24,7 @@ class PalindromeChecker(APIView):
         return Response({"isPalindrome":is_palindrome, "message":message}, status=status.HTTP_200_OK)
 
 
-class PalindromeComputerMoves(APIView):
+class PalindromeComputerMoves(APIView, AllowAny):
     """Geuss a palindrome string for computer.
         Brain of computer.
     """    

@@ -43,6 +43,7 @@ PROJECT_APPS = [
 THIRD_PARTY_APPS = [
     'corsheaders',
     'rest_framework',
+    'rest_framework_simplejwt.token_blacklist',
     # 'django_extensions',
 ]
 
@@ -162,9 +163,30 @@ REST_FRAMEWORK = {
     ),
 }
 
+# SIMPLE_JWT = {
+#     'ACCESS_TOKEN_LIFETIME': datetime.timedelta(hours=1), # Invalid after one hour.
+#     'REFRESH_TOKEN_LIFETIME': datetime.timedelta(hours=2), # Invalid after two hour.
+#     'USER_ID_CLAIM': 'user_id'
+# }
+
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(hours=12),
-    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=1),
-    'USER_ID_CLAIM': 'user_id',
-    "UPDATE_LAST_LOGIN":True
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=45),
+    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(hours=1),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'UPDATE_LAST_LOGIN':True,
+    'ALGORITHM': 'HS256',
+        'SIGNING_KEY': SECRET_KEY,
+        'VERIFYING_KEY': None,
+        'AUDIENCE': None,
+        'ISSUER': None,
+    'AUTH_HEADER_TYPES': ('Bearer', 'JWT'),
+        'USER_ID_FIELD': 'id',
+        'USER_ID_CLAIM': 'user_id',
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+        'TOKEN_TYPE_CLAIM': 'token_type',
+    'JTI_CLAIM': 'jti',
+    'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
+        'SLIDING_TOKEN_LIFETIME': datetime.timedelta(minutes=30),
+        'SLIDING_TOKEN_REFRESH_LIFETIME': datetime.timedelta(hours=1),
 }
