@@ -1,5 +1,3 @@
-![Screenshot 2023-12-02 103859](https://github.com/neilravi7/palindrome/assets/63995407/0833b1a8-62be-437d-a7b8-be994337f86f)# Palindrome Games
-
 Welcome to Palindrome Games! Have fun with our collection of exciting palindrome games. Test your wordplay skills and challenge yourself with mind-bending puzzles. Unleash the power of palindromes and discover the hidden magic of words.
 
 ## Features
